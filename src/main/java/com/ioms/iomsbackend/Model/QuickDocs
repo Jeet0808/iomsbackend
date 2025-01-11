@@ -1,0 +1,95 @@
+
+
+    Entity Definitions
+    --------------------------------------
+    Entity	Description	Fields
+    Product  :	Represents an item in the inventory with all essential details.
+        Product ID, Name , SKU, Category ID, Supplier ID, Stock Level, Price, Reorder Threshold
+    Category :  Defines groups that products can belong to, aiding in organization.
+        Category ID, Name, Description
+    Supplier :	Stores details of suppliers that provide products, linked to one or more products.
+        Supplier ID, Name, Contact Information, Email, Phone
+    StockLog :	(Optional) Tracks inventory changes, including restocks, deductions, and adjustments.
+        Log ID, Product ID, Change Amount, Change Date, Action Type
+
+
+     Error Code Guidelines
+     --------------------------------------
+    GEN0001: General error, used when no specific error code applies.
+    ERR400: Bad request, typically for validation errors.
+    ERR404: Not found error, when a requested resource cannot be located.
+    ERR500: Internal server error for unexpected issues.
+
+
+    HTTP Status Code	Description
+    -----------------------------------------
+    200	Success response when data retrieval is successful.
+    201	Successful creation of a new resource.
+    400	Bad request; returned for invalid input data.
+    404	Resource not found; returned when the requested item is not available.
+    500	Internal server error; returned for unexpected server errors.
+
+    Method-Level JavaDoc Example
+    ------------------------------------------
+
+    /**
+     * Retrieves a product by its unique ID.
+     *
+     * @param productId The ID of the product to retrieve.
+     * @return The Product object if found; otherwise, returns null.
+     * @throws ProductNotFoundException if the product with the given ID does not exist.
+     * @since 1.0
+     */
+    public Product getProductById(Long productId) throws ProductNotFoundException {
+        // Method implementation...
+    }
+
+    Code Structure & Readability
+    -------------------------------------------
+    Single Responsibility: Classes/methods handle only one task.
+    Modularity: Separate business, controller, and database logic.
+    Consistency: Uniform style for method names, file structure, and API routes.
+
+
+    Commit Message
+    -------------------------------------------
+    Format: {Ticket_ID}: {Meaningful commit message}
+    Example: IOMS-1001: Initialized project with boilerplate code
+
+    Standards & Best Practices
+    -------------------------------------------
+    Coding Standards: Naming conventions, indentation, and documentation.
+    Exception Handling: Meaningful error messages, avoid empty catch blocks.
+    Logging: Consistent, not excessive in performance-critical paths.
+    Security: No hardcoded sensitive info, check for vulnerabilities (e.g., SQL injection).
+    Null Checks: Properly handle potential nulls.
+
+    Documentation
+    ---------------------------------------------
+    Code Comments: Document complex logic.
+    JavaDocs: For public methods and classes.
+    Swagger Documentation: All APIs documented, with parameter details and error codes.
+
+
+    Core Functional Requirements
+    ----------------------------------------------
+    Product Catalog Management
+    Users can add, update, view, and delete product information.
+    Each product will include fields such as Product ID, Name, SKU, Category, Supplier, Stock Level, and Price.
+    Product data validation will ensure that entries are accurate and complete.
+
+    Inventory Monitoring
+    -----------------------------------------------
+    The system will track each product’s stock level, displaying it in real-time.
+    Users can set a Reorder Threshold to trigger alerts when stock reaches a low level, indicating that it’s time to reorder.
+    Basic inventory reports will be available to view current stock levels and highlight items below the reorder threshold.
+
+    Category Management
+    -----------------------------------------------
+    Categorize products into specific groups to enhance organization and searchability.
+    Users can create, update, and delete categories, assigning products to the correct categories.
+
+    Basic Reporting
+    ------------------------------------------------
+    Generate a simple inventory report showing stock levels for each product.
+    Display a summary of low-stock items and the total value of available stock.
